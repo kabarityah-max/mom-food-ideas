@@ -244,9 +244,7 @@
   let todayOffset = 0;
 
   function getDailyDish() {
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-    const index = (dayOfYear + todayOffset) % dishes.length;
+    const index = (todayOffset) % dishes.length;
     return dishes[index];
   }
 
@@ -276,11 +274,9 @@
     document.getElementById('dish-tip').innerHTML = dish.tip;
   }
 
-  // Initial load — show today's dish
-  todayOffset = 0;
+  // Start on a random dish
+  todayOffset = Math.floor(Math.random() * dishes.length);
   loadDish();
-  // Reset offset so first click cycles to the next
-  todayOffset = 1;
 </script>
 </body>
 </html>
